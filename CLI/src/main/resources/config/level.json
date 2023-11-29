@@ -1,0 +1,18 @@
+{
+  "systems": [],
+  "levels": [
+    {
+      "实例一":"如下，分别为，要授权的群，授权列表等",
+      "groupid": 1,
+      "roots": [1,2,3],
+      "firsts": [],
+      "seconds": []
+    },
+    {
+      "groupid": 2,
+      "roots": [],
+      "firsts": [],
+      "seconds": []
+    }
+  ]
+}

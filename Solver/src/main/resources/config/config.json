@@ -1,0 +1,11 @@
+{
+  "name": "root",
+  "config": [
+    {
+      "login.json":"github.zimoyin.mtool.config.global.LoginConfig",
+      "command.json":"github.zimoyin.mtool.config.global.CommandConfig",
+      "level.json":"github.zimoyin.mtool.config.global.LevelConfig",
+      "h2.json":"github.zimoyin.mtool.config.global.H2Config"
+    }
+  ]
+}

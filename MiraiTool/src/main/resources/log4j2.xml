@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    status="warn" 日志框架本身的输出日志级别，可以修改为debug
+    monitorInterval="5" 自动加载配置文件的间隔时间，不低于 5秒；生产环境中修改配置文件，是热更新，无需重启应用
+ -->
+<configuration status="info" monitorInterval="1">
+    <!--
+    集中配置属性进行管理
+    使用时通过:${name}
+    -->
+    <properties>
+        <property name="LOG_HOME">./log</property>
+
+    </properties>
+
+    <!-- 日志处理 -->
+    <Appenders>
+
+        <!--自定义日志-->
+        <BeforeAppender name="BeforeAppender"  />
+        <!-- 控制台输出 appender，SYSTEM_OUT输出黑色，SYSTEM_ERR输出红色 -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <!--<PatternLayout pattern="%d{HH:mm:ss.SSS} [%-30t] [%-5level]: %m%n" charset="UTF-8"/>-->
+            <!--<PatternLayout pattern="%d{HH:mm:ss.SSS} [%-5level] [%-30t] [%-30F][%-3L]: %m%n" charset="UTF-8"/>-->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%-5level] [%-30F][%-3L]: %m%n" charset="UTF-8"/>
+            <!--日志格式：[日期] [线程] [logger的名称] [行号-固定长度] : 内容换行 -->
+            <!--<PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%t] [%logger][%L] :  %m%n"/>-->
+        </Console>
+        <!--自定义日志-->
+        <AfterLogAppender name="AfterLogAppender"/>
+        <!--
+            Log4j 将提供默认配置。DefaultConfiguration 类中提供的默认配置将设置：
+            %d{HH:mm:ss.SSS} ，表示输出到毫秒的时间
+            %t，输出当前线程名称
+            %-5level，输出日志级别，-5表示左对齐并且固定输出5个字符，如果不足在右边补0
+            %logger，输出logger名称，因为Root Logger没有名称，所以没有输出
+            %msg，日志文本
+            %n，换行
+            其他常用的占位符有：
+            %F，输出所在的类文件名，如Client.java
+            %L，输出行号
+            %M，输出所在方法名
+            %l，输出语句所在的行数, 包括类名、方法名、文件名、行数
+        -->
+        <!-- 按照一定规则拆分的日志文件的appender -->  <!-- 拆分后的文件 -->
+        <!-- filePattern="${LOG_HOME}/$${date:yyyy-MM-dd}/myrollog-%d{yyyy-MM-dd-HH-mm}-%i.log"> -->
+        <RollingRandomAccessFile name="rollingFile" fileName="${LOG_HOME}/rol-log.lgt"
+                                 filePattern="${LOG_HOME}/$${date:yyyy-MM-dd}/log/rol-log-%d{yyyy-MM-dd}-【%i】.log">
+            <!-- 日志级别过滤器 -->
+            <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            <!-- 日志消息格式 -->
+            <!--日志格式：[日期] [线程-固定长度] [logger的名称-固定长度] : 内容换行 -->
+            <!--<PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] %l %c{36} - %msg%n"/>-->
+            <!--日志格式：[日期] [线程-固定长度] [输出日志的类与方法行号]  : 内容换行 -->
+            <!--<PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%t] %l :  %m%n"/>-->
+            <!--日志格式：[日期] [线程-固定长度] [logger的名称-固定长度] [行号-固定长度] : 内容换行 -->
+            <!--<PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%-30t] [%-110logger][%-4L] :  %m%n"/>-->
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%-30t] [%logger][%-4L] :  %m%n"/>
+            <Policies>
+                <!-- 在系统启动时，出发拆分规则，生产一个新的日志文件 -->
+                <OnStartupTriggeringPolicy/>
+                <!-- 按照文件大小拆分，10MB -->
+                <SizeBasedTriggeringPolicy size="2MB"/>
+                <!-- 按照时间节点拆分，规则根据filePattern定义的 -->
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <!-- 在同一个目录下，文件的个限定为 30个，超过进行覆盖 -->
+            <DefaultRolloverStrategy max="100"/>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="warnFile" fileName="${LOG_HOME}/warn.lgt"
+                                 filePattern="${LOG_HOME}/$${date:yyyy-MM-dd}/warn/warn-%d{yyyy-MM-dd}【%i】.log">
+            <!-- 日志级别过滤器 -->
+            <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+            <!-- 日志消息格式 -->
+            <!--<PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] %l %c{36} - %msg%n"/>-->
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%t] %l :  %m%n"/>
+            <Policies>
+                <!-- 在系统启动时，出发拆分规则，生产一个新的日志文件 -->
+                <OnStartupTriggeringPolicy/>
+                <!-- 按照文件大小拆分，10MB -->
+                <SizeBasedTriggeringPolicy size="2MB"/>
+                <!-- 按照时间节点拆分，规则根据filePattern定义的 -->
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <!-- 在同一个目录下，文件的个限定为 30个，超过进行覆盖 -->
+            <DefaultRolloverStrategy max="10"/>
+        </RollingRandomAccessFile>
+
+    </Appenders>
+
+
+    <!-- logger 定义 -->
+    <Loggers>
+        <!--禁止打印该包下的日志-->
+        <logger name="com.kennycason.kumo" level="ERROR"/>
+        <logger name="io.netty" level="ERROR"/>
+        <!-- 使用 rootLogger 配置 日志级别 level="trace" -->
+        <Root level="debug">
+            <!--<Root level="info">-->
+            <!-- 指定日志使用的处理器 -->
+            <AppenderRef ref="BeforeAppender"/>
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="AfterLogAppender"/>
+            <!--            <AppenderRef ref="file" />-->
+            <AppenderRef ref="rollingFile"/>
+            <AppenderRef ref="warnFile"/>
+        </Root>
+    </Loggers>
+</configuration>

@@ -1,0 +1,6 @@
+{
+  "user": "root",
+  "password": "root",
+  "jdbc": "jdbc:h2:./data/db/",
+  "driverClass": "org.h2.Driver"
+}

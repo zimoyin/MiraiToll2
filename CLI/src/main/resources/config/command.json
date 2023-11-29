@@ -1,0 +1,6 @@
+{
+  "name": "command",
+  "commandPrefix": "命令前缀",
+  "@": false,
+  "space": true
+}

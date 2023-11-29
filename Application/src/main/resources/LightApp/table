@@ -1,0 +1,14 @@
+create table "Thesaurus"
+(
+    text    mediumtext                         not null,
+    length  INTEGER                            not null,
+    source  text,
+    date    datetime default CURRENT_TIMESTAMP not null,
+    remarks text,
+    constraint text_id
+        primary key (text)
+);
+
+create index text_index
+    on "Thesaurus" (text, length, source);
+

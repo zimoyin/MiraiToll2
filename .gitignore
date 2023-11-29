@@ -1,0 +1,15 @@
+# 项目排除路径
+/target/
+/cache/
+/data/
+/log/
+/lib/
+/data_bak/
+/cache_bak/
+/plug/
+/plugs/
+/out/
+/.idea/httpRequests/
+/run/
+/src/main/resources/LightApp/
+/ClassSty/

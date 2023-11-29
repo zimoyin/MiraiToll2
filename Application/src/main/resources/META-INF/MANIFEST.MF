@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Main-Class: github.zimoyin.cs.Main
+Class-Path: netty-handler-4.1.63.Final.jar mirai-core-jvm-2.15.0-M1.jar 
+ kotlin-stdlib-jdk7-1.8.10.jar kotlinx-serialization-protobuf-jvm-1.5.0.
+ jar kotlin-stdlib-1.8.20-RC.jar netty-common-4.1.63.Final.jar netty-cod
+ ec-4.1.63.Final.jar mirai-core-utils-jvm-2.15.0-M1.jar kotlin-stdlib-jd
+ k8-1.8.10.jar javafx-web-17-win.jar javafx-controls-17-win.jar kotlin-r
+ eflect-1.8.10.jar kotlin-dynamic-delegation-jvm-0.4.0-180.1.jar javafx-
+ web-17.jar bcprov-jdk15on-1.64.jar kotlin-jvm-blocking-bridge-runtime-j
+ vm-3.0.0-180.1.jar kotlinx-coroutines-jdk8-1.6.4.jar javafx-graphics-17
+ -win.jar javafx-base-17-win.jar netty-transport-4.1.63.Final.jar kotlin
+ -stdlib-common-1.8.10.jar atomicfu-jvm-0.20.0.jar commons-logging-1.2.j
+ ar log4j-core-2.18.0.jar javafx-media-17-win.jar mirai-console-compiler
+ -annotations-jvm-2.15.0-M1.jar asm-9.4.jar httpmime-4.5.14.jar slf4j-ap
+ i-1.7.36.jar log4j-api-2.18.0.jar annotations-13.0.jar httpclient5-5.2.
+ 1.jar log4j-slf4j-impl-2.18.0.jar netty-resolver-4.1.63.Final.jar h2-2.
+ 1.214.jar httpcore5-h2-5.2.jar javafx-media-17.jar jsoup-1.15.4.jar fas
+ tjson2-2.0.23.jar httpcore5-5.2.jar mirai-core-api-jvm-2.15.0-M1.jar ko
+ tlinx-serialization-core-jvm-1.5.0.jar kotlinx-serialization-json-jvm-1
+ .5.0.jar netty-buffer-4.1.63.Final.jar kotlinx-coroutines-core-jvm-1.6.
+ 4.jar javafx-base-17.jar javafx-controls-17.jar httpcore-4.4.16.jar com
+ mons-codec-1.11.jar javafx-graphics-17.jar httpclient-4.5.14.jar
+

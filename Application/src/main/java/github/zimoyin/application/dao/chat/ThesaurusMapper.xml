@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace = 绑定一个对应的Dao/mapper接口-->
+<!-- 绑定com.zimo.dao.UserDao 接口-->
+<mapper namespace="github.zimoyin.application.dao.chat.ThesaurusDao">
+
+    <!--  select 查找语句 :查询mybatis下的user字段 -->
+    <!--  执行后的结果放入 getUserList 中 -->
+    <!--  resultType:返回一个结果,参数填返回的类型，他的类型是User 所以放入User的全限定名  -->
+    <!--  resultType：返回多个结果 -->
+    <select id="getThesaurus" resultType="github.zimoyin.application.dao.chat.Thesaurus">
+        select *
+        from mirai.Thesaurus;
+    </select>
+
+    <select id="getKeywords" resultType="java.lang.String">
+        select text_key
+        from mirai.Thesaurus;
+    </select>
+
+    <select id="getValues" parameterType="java.lang.String" resultType="java.lang.String">
+        select text_value
+        from mirai.Thesaurus
+        where text_key = #{key};
+    </select>
+
+    <!--  插入数据  -->
+    <!--  对象中的属性可以直接取出来  (#{id},#{name},#{pwd})-->
+    <insert id="addThesaurus" parameterType="github.zimoyin.application.dao.chat.Thesaurus">
+        insert into mirai.Thesaurus (text_key, text_value, source, date)
+        values (#{text_key}, #{text_value}, #{source}, #{date});
+    </insert>
+</mapper>
